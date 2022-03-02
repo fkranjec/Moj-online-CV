@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Data, DataType, TextImgData } from "./App";
+import { Data } from "./App";
 
 interface DataListProps {
   data: Data[];
