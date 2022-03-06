@@ -12,9 +12,9 @@ const TextSection: React.FC<TextSectionProps> = ({ data, background }) => {
     <React.Fragment>
       <div className="sekcija_text" style={{ backgroundColor: background }}>
         <div className="sekcija_tekst_text">
-          <h1>{(data as TextData).text.naslov}</h1>
+          <h1>{data.text.naslov}</h1>
           <hr></hr>
-          <p>{(data as TextData).text.text}</p>
+          <p>{data.text.text}</p>
         </div>
       </div>
     </React.Fragment>
