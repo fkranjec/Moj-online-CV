@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Data } from "./App";
-import DataList from "./DataList";
+import DataList from "./components/DataList";
 import Section from "./Section";
+import svg from "./assets/arrD.png";
+import "./MainPage.css";
 
 interface MainPageProps {
   data: Data[];
@@ -9,6 +11,8 @@ interface MainPageProps {
 }
 
 const MainPage: React.FC<MainPageProps> = ({ data, onDataChange }) => {
+  const [playground, togglePlayground] = useState<boolean>(false);
+
   return (
     <React.Fragment>
       {data.map((sekcija, idx) => (
@@ -19,7 +23,13 @@ const MainPage: React.FC<MainPageProps> = ({ data, onDataChange }) => {
           background={sekcija.background}
         />
       ))}
-      <DataList data={data} dataChange={() => onDataChange(data)} />
+      <div onClick={() => togglePlayground(!playground)} className="playground">
+        <h1 style={{ color: playground ? "white" : "" }}>
+          playground <img src={svg} alt=""></img>
+        </h1>
+        {playground && <h3>pomaknite cijelu sekciju gore ili dolje</h3>}
+      </div>
+      {playground && <DataList data={data} dataChange={onDataChange} />}
     </React.Fragment>
   );
 };

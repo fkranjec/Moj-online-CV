@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Data } from "./App";
+import { Data, DataType, ImgData, TextData, TextImgData } from "../App";
+import "./DataList.css";
 
 interface DataListProps {
   data: Data[];
@@ -19,8 +20,7 @@ const DataList: React.FC<DataListProps> = ({ data, dataChange }) => {
     let pom: Data = newData[idxCurr - 1];
     newData[idxCurr - 1] = newData[idxCurr];
     newData[idxCurr] = pom;
-    setData(newData);
-    dataChange(newData);
+    notifiyChanges(newData);
   };
 
   const moveItemDown = (idxCurr: number) => {
@@ -33,19 +33,28 @@ const DataList: React.FC<DataListProps> = ({ data, dataChange }) => {
     let pom: Data = newData[idxCurr + 1];
     newData[idxCurr + 1] = newData[idxCurr];
     newData[idxCurr] = pom;
-    setData(newData);
-    dataChange(newData);
+    notifiyChanges(newData);
   };
+
+  const notifiyChanges = (data: Data[]) => {
+    setData(data);
+    dataChange(data);
+  };
+
   return (
     <React.Fragment>
-      {useData.map((el, idx) => (
-        <p key={el.id}>
-          {el.id}
-          <button onClick={() => moveItemUp(idx)}>UP</button>
-          <button onClick={() => moveItemDown(idx)}>DOWN</button>
-        </p>
-      ))}
-      <button onClick={() => dataChange(data)}>CLICK</button>
+      <div className="list">
+        {useData.map((el, idx) => (
+          <p key={el.id}>
+            {el.type === DataType.TEXTIMG &&
+              (el.data as TextImgData).text.naslov}
+            {el.type === DataType.TEXT && (el.data as TextData).text.naslov}
+            {el.type === DataType.IMG && (el.data as ImgData).naslov}
+            <button onClick={() => moveItemUp(idx)}>UP</button>
+            <button onClick={() => moveItemDown(idx)}>DOWN</button>
+          </p>
+        ))}
+      </div>
     </React.Fragment>
   );
 };

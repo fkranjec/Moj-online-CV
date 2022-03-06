@@ -1,6 +1,9 @@
 import React from "react";
 import { DataType, ImgData, TextData, TextImgData } from "./App";
+import ImageSection from "./components/ImageSection";
 import "./Section.css";
+import TextImageSection from "./components/TextImageSection";
+import TextSection from "./components/TextSection";
 
 interface SectionProps {
   data: TextData | TextImgData | ImgData;
@@ -12,38 +15,13 @@ const Section: React.FC<SectionProps> = ({ data, type, background }) => {
   return (
     <React.Fragment>
       {type === DataType.TEXTIMG && (
-        <div
-          className="sekcija"
-          style={{
-            backgroundColor: background,
-            flexDirection: (data as TextImgData).side ? "row-reverse" : "row",
-          }}
-        >
-          <div className="sekcija_tekst">
-            <p>{(data as TextImgData).text}</p>
-          </div>
-          <div className="sekcija_slika">
-            <p>{(data as TextImgData).img}</p>
-          </div>
-        </div>
+        <TextImageSection data={data as TextImgData} background={background} />
       )}
       {type === DataType.TEXT && (
-        <div className="sekcija" style={{ backgroundColor: background }}>
-          <div className="sekcija_tekst">
-            <p>{(data as TextData).text}</p>
-          </div>
-        </div>
+        <TextSection data={data as TextData} background={background} />
       )}
       {type === DataType.IMG && (
-        <div className="sekcijaSl" style={{ backgroundColor: background }}>
-          <div className="sekcija_slike">
-            {(data as ImgData).imgs.map((img, idx) => (
-              <p className="slika" key={idx}>
-                {img}
-              </p>
-            ))}
-          </div>
-        </div>
+        <ImageSection data={data as ImgData} background={background} />
       )}
     </React.Fragment>
   );

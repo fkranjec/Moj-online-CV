@@ -1,0 +1,14 @@
+.playground{
+    background-color: #363946;
+    padding: 10px 40px 10px 10px;
+    
+}
+
+.playground:hover{
+    cursor: pointer;
+}
+
+img{
+    width: 30px;
+    height: 15px;
+}

@@ -1,0 +1,23 @@
+.sekcija{
+    min-height: 700px;
+    display: flex;
+    margin:0 0 100px 0;
+    border-radius: 5px;
+    padding: 15px;
+    justify-content: space-evenly;
+    flex: 1 0 40%;
+}
+
+.sekcija_slika>img{
+    display: flex;
+    margin: auto;
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.sekcija_tekst{
+    flex: 0 0 30%;
+    width: 40%;
+    font-size: 22px;
+}
