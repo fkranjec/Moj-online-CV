@@ -117,11 +117,14 @@ const App = () => {
       background: "#363946",
     },
   ];
+
   const [useData, setData] = useState<Data[]>(allData);
+
   const changeData = (data: Data[]): void => {
     setData(data);
     console.log(useData);
   };
+
   return <MainPage data={useData} onDataChange={changeData} />;
 };
 
